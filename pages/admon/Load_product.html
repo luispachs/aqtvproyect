@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+  function imagen(){
+    var ruta= document.getElementById("imagen").value;
+    var image=document.createElement("img");
+    var cuerpo =document.body;
+    cuerpo.appendChild(image);
+    if(ruta!=""){
+        image.setAttribute("src",ruta);
+    }
+
+
+  }
+</script>
+<meta charset="utf-8">
+<title>Pagina administrativa:: carga de poductos</title>
+<link rel="shortcut icon" type="image/icon" href="../../image/Logo_AQTV.jpg"/>
+<link rel="stylesheet" type="text/css" href="../../Style/productos.css">
+</head>
+<body onload="imagen();">
+<h1>Agregar producto</h1>
+<form method="post" enctype="multipart/form-data">
+Nombre del producto:<br/>
+<input type="text" name="nombre" placeholder="ingrese nombre"><br/>
+Ingrese tipo de producto:<br/>
+<input type="text"name="tipo" placeholder="tipo"><br/>
+Ingrese precio de producto:<br/>
+<input type="number" name="valor" placeholder="00000"><br/>
+Ingrese descripcion del producto:<br/>
+<textarea name="descripcion" rows="8" cols="80"></textarea><br/>
+Ingrese imagen:<br/>
+<input type="file" name="imagen"  id="imagen" change="imagen();"><br/>
+<input type="submit" value="subir"><br/>
+</form>
+<p id="info"></p>
+
+</body>
+
+
+
+</html>

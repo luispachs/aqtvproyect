@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Pagina de venta de productos de AQTV">
+<meta name="keywords" content="venta,productos,aqtv">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=1">
+<script src="../script/parseForm.js"></script>
+
+<title> Tienda de productos  AQTV S.A.S</title>
+
+<link rel="shortcut icon" type="image/icon" href="../image/Logo_AQTV.jpg">
+<link rel="stylesheet" type="text/css" href="../Style/productos.css">
+<script
+			  src="https://code.jquery.com/jquery-3.4.1.js"
+			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			  crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/e4100513fa.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+		$("#boton1").click(function(){
+			var buscar= $("#buscar").val();
+			var valorMin=$("#valorMin").val();
+			var valorMax=$("#valorMax").val();
+			var opcion=$("input:radio[name=opcion]:checked").val();
+      var i;
+      var datos;
+      console.log(buscar,valorMin,valorMax,opcion);
+      //Condigo de transferencia de datos mediante el uso de ajax con JQuery
+		$.ajax({
+				type:"POST",
+				url:"../script/filterProduct.php",
+				data:{"buscar": buscar,"valorMin":valorMin,"valorMax":valorMax,"opcion":opcion},
+				success: function(result,status,xhr){
+          var datos=JSON.parse(result);
+         let lado= document.querySelector("#lado");
+         lado.innerHTML="";
+      for(let item of datos ){
+          
+         //"<P>"+ item.id+".."+item.nombre+".."+item.tipo+".."+item.precio+".."+item.descripcion+"<p>";
+         var div= document.createElement("div");
+         div.setAttribute("class","item");
+        var info =  document.createElement("section");
+        info.innerHTML=  "<img src=\"../resource/"+item.imagen+ "\" class=\"imgitem\"\"><h3>"+item.nombre+"</h3><p><span>Nombre: </span>"+item.nombre+"<br><span>Precio:</span>"+item.precio+"<br><span>Tipo:</span>"+item.tipo+"<br><span>Descripcion:</span>"+item.descripcion+"</p>";
+        info.setAttribute("class","itemIndividual");
+        lado.appendChild(div);
+        div.appendChild(info);
+        console.log(result);
+       
+       }
+       $(".item").css({"width":"250px","border":"5px solid","border-radius":"30px","margin":"20px","padding":"10px","float":"left","height":"150px"}); 
+       $(".imgitem").css({"width":"150px","height":"100px"});
+       console.log(datos);
+       
+				}
+			}
+	)
+
+		})
+
+  });
+
+</script>
+</head>
+<body >
+  <header class="encabezados">
+
+        <img src="../image/Banner.png">
+
+  </header>
+
+  <nav class="navegador">
+      <ul class="menu">
+        <li class="menuitem"><a href="../index.php"> Inicio </a></li>
+        <li class="menuitem"><a href="quienes_somos.php"> Quienes somos? </a></li>
+        <li class="menuitem"><a href="#"> Productos </a></li>
+        <li class="menuitem"><a href="quienes_somos.php"> Contactanos </a></li>
+      </ul>
+  </nav>
+ 
+
+  <section class="seccion">
+    <div class="formulario">
+<form  action="" method="post" name="compra">
+  <br>
+  <br>
+  <input type="text" name="buscar" id="buscar"   placeholder="Buscar"><br>
+  Valor Minimo: <br>
+  <!--<input type="range" name="valorMin"  min="10000" max="5000000" step="5000" list="rango"><br>-->
+  <input type="number" name="valorMin" id="valorMin" placeholder="10000">
+  <br>
+  Valor Maximo:<br>
+  <!--<input type="range" name="valorMax"  min="10000" max="5000000" step="5000" list="rango"><br>-->
+  <input type="number" name="valorMax" id="valorMax" placeholder="5000000">
+  <br>
+ <!-- <datalist name ="rango" id="rango">
+    <option value="10000">10000</option>
+    <option value="100000">100000</option>
+    <option value="500000">500000</option>
+    <option value="100000">100000</option>
+    <option value="1500000">1500000</option>
+    <option value="2000000">2000000</option>
+    <option value="2500000">2500000</option>
+    <option value="3000000">3000000</option>
+    <option value="3500000">3500000</option>
+    <option value="4000000">4000000</option>
+    <option value="4500000">4500000</option>
+    <option value="5000000">5000000</option>
+  </datalist>-->
+
+  <input type="radio" name="opcion" id="opcion" value="Todo" checked> Todo<br>
+  <input type="radio" name="opcion" id="opcion" value="camara"> Camaras<br>
+  <input type="radio" name="opcion" id="opcion" value="Dvr"> Dvr <br>
+  <input type="radio" name="opcion" id="opcion" value="monitor"> monitor<br>
+  <input type="radio" name="opcion" id="opcion" value="servicio">servicios<br>
+  <input type="radio" name="opcion" id="opcion" value="Alarma"> Alarmas<br>
+  <input type="button"  value="Buscar" id="boton1" >
+</form>
+</div>
+</section>
+  <aside class="lateral" id="lado">
+
+  </aside>
+
+  <footer>
+  <div class="pie" id="pie">
+    <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+    <a href="https://twitter.com/"><i class="fab fa-twitter-square"></i></a>
+    <a href="#"><i class="fas fa-phone-square"></i></a>
+      <a href="#"><i class="far fa-comments"></i></a>
+
+      <address>
+        <p>
+          yenlu, diseño de soluciones informaticas<br>
+          telefono: 5355423<br>
+          direccion: calle falsa 123
+        </p>
+      </address>
+  </div>
+    </footer>
+
+
+</body>
+<!--<script>
+/*function filtrar(){
+  var buscar = document.getElementById("buscar").value;
+  var valorMin=document.getElementById("valorMin").value;
+  var valorMax= document.getElementById("valorMax").value;
+  var opcion= document.getElementById("opcion").value;
+  var data =convertirJson(buscar,valorMin,valorMax,opcion);
+  console.log(data);
+
+
+}
+*/
+
+  </script>-->
+
+</html>
