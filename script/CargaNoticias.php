@@ -1,5 +1,9 @@
  <?php
-//include ("db_conn.php");
+/*
+Desarrollador: Luis Alfredo Pacheco Sandoval
+Correo: laps1308@gmail.com
+Descripción: Codigo  para la conexion  a la base de datos
+*/
 class noticias extends mysqli {
   private $host ;
   private $user ;
