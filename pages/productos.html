@@ -36,9 +36,7 @@
           var datos=JSON.parse(result);
          let lado= document.querySelector("#lado");
          lado.innerHTML="";
-      for(let item of datos ){
-          
-         //"<P>"+ item.id+".."+item.nombre+".."+item.tipo+".."+item.precio+".."+item.descripcion+"<p>";
+      for(let item of datos){
          var div= document.createElement("div");
          div.setAttribute("class","item");
         var info =  document.createElement("section");
@@ -69,7 +67,7 @@
         <img src="../image/Banner.png">
 
   </header>
-
+<!--################### Barra de menu del sistema web ############################-->
   <nav class="navegador">
       <ul class="menu">
         <li class="menuitem"><a href="../index.php"> Inicio </a></li>
@@ -78,36 +76,24 @@
         <li class="menuitem"><a href="quienes_somos.php"> Contactanos </a></li>
       </ul>
   </nav>
- 
+ <!--#################################### Fin barra de menú ###########################################-->
 
   <section class="seccion">
     <div class="formulario">
+  <!--########################Formulario de busqueda de la pagina productos####################-->
 <form  action="" method="post" name="compra">
   <br>
   <br>
   <input type="text" name="buscar" id="buscar"   placeholder="Buscar"><br>
   Valor Minimo: <br>
-  <!--<input type="range" name="valorMin"  min="10000" max="5000000" step="5000" list="rango"><br>-->
+ 
   <input type="number" name="valorMin" id="valorMin" placeholder="10000">
   <br>
   Valor Maximo:<br>
-  <!--<input type="range" name="valorMax"  min="10000" max="5000000" step="5000" list="rango"><br>-->
+ 
   <input type="number" name="valorMax" id="valorMax" placeholder="5000000">
   <br>
- <!-- <datalist name ="rango" id="rango">
-    <option value="10000">10000</option>
-    <option value="100000">100000</option>
-    <option value="500000">500000</option>
-    <option value="100000">100000</option>
-    <option value="1500000">1500000</option>
-    <option value="2000000">2000000</option>
-    <option value="2500000">2500000</option>
-    <option value="3000000">3000000</option>
-    <option value="3500000">3500000</option>
-    <option value="4000000">4000000</option>
-    <option value="4500000">4500000</option>
-    <option value="5000000">5000000</option>
-  </datalist>-->
+ 
 
   <input type="radio" name="opcion" id="opcion" value="Todo" checked> Todo<br>
   <input type="radio" name="opcion" id="opcion" value="camara"> Camaras<br>
@@ -117,13 +103,16 @@
   <input type="radio" name="opcion" id="opcion" value="Alarma"> Alarmas<br>
   <input type="button"  value="Buscar" id="boton1" >
 </form>
+<!-- #############################final del formulario######################################-->
 </div>
 </section>
+<!-- ############################## Espacio lateral para la muestra de los productos filtrados########################################################################################### -->
   <aside class="lateral" id="lado">
 
   </aside>
-
+<!-- ################################# Final de espacio de filtrado ##################################-->
   <footer>
+    <!-- ############################################ Inicio de pie de paginas ###################################-->
   <div class="pie" id="pie">
     <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
     <a href="https://twitter.com/"><i class="fab fa-twitter-square"></i></a>
@@ -137,24 +126,10 @@
           direccion: calle falsa 123
         </p>
       </address>
+      <!-- #################### Fin pie de paginas ######################################################-->
   </div>
     </footer>
 
 
 </body>
-<!--<script>
-/*function filtrar(){
-  var buscar = document.getElementById("buscar").value;
-  var valorMin=document.getElementById("valorMin").value;
-  var valorMax= document.getElementById("valorMax").value;
-  var opcion= document.getElementById("opcion").value;
-  var data =convertirJson(buscar,valorMin,valorMax,opcion);
-  console.log(data);
-
-
-}
-*/
-
-  </script>-->
-
 </html>

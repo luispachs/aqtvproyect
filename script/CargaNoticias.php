@@ -1,4 +1,5 @@
  <?php
+ 
 /*
 Desarrollador: Luis Alfredo Pacheco Sandoval
 Correo: laps1308@gmail.com
@@ -12,12 +13,13 @@ class noticias extends mysqli {
   private $conn;
   public $errno;
   public $error;
-  private $buscar="";
-  private $valorMin=0;
-  private $valorMax=0;
-  private $tipo="todo";
+  private $buscar;
+  private $valorMin;
+  private $valorMax;
+  private $tipo;
   private $consulta="";
   private $respuesta=null;
+  private $matrix=array();
   public function __construct() {
 
     $this->host="localhost";
@@ -25,49 +27,42 @@ class noticias extends mysqli {
     $this->password ="123456789";
     $this->database ="aqtv";
 
-    //$this->conn=parent::__construct($this->host,$this->user,$this->password,$this->database);
+    
     $this->conn= new  mysqli($this->host,$this->user,$this->password,$this->database);
-  //  $this->errno= $this->conn->connect_errno;
-    //$this->error= $this->conn->connect_error;
+  
   }
 
   public function connection_sql($dato1,$dato2,$dato3,$dato4){
-    $pnombre;
-    $pid;
-    $pprecio;
-    $ptipo;
-    $pdescripcion;
+    
+    
     if(!$this->conn->connect_error){
       $this->buscar=$dato1;
       $this->valorMin=(int)$dato2;
       $this->valorMax=(int)$dato3;
       $this->tipo=$dato4;
+      $i=1;
       /*Verificacion de datos  si contienen algun valor para pasar los  datos a la consulta*/
-      if($this->buscar===""){// Si el campo buscar esta vacio
-        if($this->valorMin===0){//si el campo valorMin tienen es igual a 0
-          if($this->valorMax===0){//si el campo valorMin tienen es igual a 0
-            if($this->tipo="todo"){//si El capo tipo esta marcado como "Todo"
-            //Consulta general para mostrar al inicio de pagina productos
+      if($this->buscar==="" && $this->valorMin===0 && $this->valorMax===0 && $this->tipo="todo"){// Si los campos buscar esta vacio
+        
              $this->consulta="select * from productos";
-             $respuesta1= $this->conn->query($this->consulta);
-             $i=1;
-             $matrix=array();
+             $this->respuesta1= $this->conn->query($this->consulta);
+            
+             
              while($i<=$this->conn->affected_rows){
-              $this->respuesta=$respuesta1->fetch_array(MYSQLI_ASSOC);
+             $this->respuesta=$this->respuesta1->fetch_array(MYSQLI_ASSOC);
             /*Creacion de array compuesto de array para ser retornados los datos de la consulta */
               $matrix2= array("id"=>$this->respuesta["pid"],"nombre"=>$this->respuesta["pnombre"],"precio"=>$this->respuesta["pprecio"],"tipo"=>$this->respuesta["ptipo"],"descripcion"=>$this->respuesta["pdescripcion"],"imagen"=>$this->respuesta["pimagen"]);
 
-             $matrix[]=$matrix2;
+             array_push($this->matrix,$matrix2);
+             unset($matrix2);
              
              $i++;
              }
-             //retorno del datos
-             return $matrix;
-            }
-          }
-        }
+           
+            
+            
       }
-      else if($this->buscar!=""||$this->valorMin!=0||$this->valorMax!=0||$this->tipo!="todo"){
+     /* else if($this->buscar!=""||$this->valorMin!=0||$this->valorMax!=0||$this->tipo!="todo"){
         $this->consulta="select * from productos where pnombre like '%{$this->buscar}%' and pprecio between {$this->valorMin} and {$this->valorMax} and ptipo= '{$this->tipo}'";
         $this->respuesta1=$this->conn->query($this->consulta);
         $i=1;
@@ -83,16 +78,32 @@ class noticias extends mysqli {
         return $matrix;
       
 
-      }
-     
-      $this->conn->close();
+      }*/
+      else if($this->buscar!="" || $this->valorMin!=0 || $this->valorMax!=0 || $this->tipo!="todo" ){
+        
+        $this->consulta="select * from productos where pdescripcion like '%{$this->buscar}%' and pprecio between {$this->valorMin} and {$this->valorMax} and ptipo= '{$this->tipo}'";
+        $this->respuesta1=$this->conn->query($this->consulta);
+        
+       
+        while($i<=$this->conn->affected_rows){
+          $this->respuesta=$this->respuesta1->fetch_array(MYSQLI_ASSOC);
+          $matrix2= array("id"=>$this->respuesta["pid"],"nombre"=>$this->respuesta["pnombre"],"precio"=>$this->respuesta["pprecio"],"tipo"=>$this->respuesta["ptipo"],"descripcion"=>$this->respuesta["pdescripcion"],"imagen"=>$this->respuesta["pimagen"]);
+          array_push($this->matrix,$matrix2);
+          unset($matrix2);
 
+        }
+        }
+      
+    }
+    return $this->matrix;
+      $this->conn->close();
+      
     }
 
 }
 
-}
+
 
 $data = new noticias();
-$data->connection_sql("",0,0,"todo");
+echo JSON_encode($data->connection_sql("",0,0,"todo"));
  ?>
