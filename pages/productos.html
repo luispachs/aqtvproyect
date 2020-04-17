@@ -20,9 +20,10 @@
 <script type="text/javascript">
   $(document).ready(function(){
 		$("#boton1").click(function(){
+
 			var buscar= $("#buscar").val();
-			var valorMin=$("#valorMin").val();
-			var valorMax=$("#valorMax").val();
+			var valorMin=jQuery.isEmptyObject($("#valorMin").val())? "0": $("#valorMin").val();
+			var valorMax=jQuery.isEmptyObject($("#valorMax").val())? "0": $("#valorMax").val();
 			var opcion=$("input:radio[name=opcion]:checked").val();
       var i;
       var datos;
@@ -49,7 +50,7 @@
        }
        $(".item").css({"width":"250px","border":"5px solid","border-radius":"30px","margin":"20px","padding":"10px","float":"left","height":"150px"}); 
        $(".imgitem").css({"width":"150px","height":"100px"});
-       console.log(datos);
+     
        
 				}
 			}
@@ -84,14 +85,14 @@
 <form  action="" method="post" name="compra">
   <br>
   <br>
-  <input type="text" name="buscar" id="buscar"   placeholder="Buscar"><br>
+  <input type="text" name="buscar" id="buscar"  placeholder="Buscar"><br>
   Valor Minimo: <br>
  
-  <input type="number" name="valorMin" id="valorMin" placeholder="10000">
+  <input type="number" name="valorMin"  id="valorMin" placeholder="10000">
   <br>
   Valor Maximo:<br>
  
-  <input type="number" name="valorMax" id="valorMax" placeholder="5000000">
+  <input type="number" name="valorMax"  id="valorMax" placeholder="5000000">
   <br>
  
 
