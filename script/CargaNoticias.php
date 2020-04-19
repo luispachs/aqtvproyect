@@ -16,7 +16,7 @@ class noticias extends mysqli {
   private $buscar="";
   private $valorMin=0;
   private $valorMax=0;
-  private $tipo="todo";
+  private $tipo="Todo";
   private $consulta="";
   private $respuesta=null;
   private $matrix=array();
@@ -42,7 +42,7 @@ class noticias extends mysqli {
       $this->tipo=$dato4;
       $i=1;
       /*Verificacion de datos  si contienen algun valor para pasar los  datos a la consulta*/
-      if($this->buscar==="" && $this->valorMin===0 && $this->valorMax===0 && $this->tipo="Todo"){// Si los campos buscar esta vacio
+      if($this->buscar==="" && $this->valorMin===0 && $this->valorMax===0 && $this->tipo==="Todo"){// Si los campos buscar esta vacio
         
              $this->consulta="select * from productos";
              $this->respuesta1= $this->conn->query($this->consulta);
@@ -128,6 +128,18 @@ class noticias extends mysqli {
       }
       else if($this->buscar==="" && $this->valorMin===0 && $this->valorMax===0 && $this->tipo!="Todo"){
         $this->consulta="select * from productos where ptipo ='{$this->tipo}'";
+        $this->respuesta1=$this->conn->query($this->consulta);
+        $i=1;
+        while($i<=$this->conn->affected_rows){
+          $this->respuesta=$this->respuesta1->fetch_array(MYSQLI_ASSOC);
+          $matrix2=array("id"=>$this->respuesta["pid"],"nombre"=>$this->respuesta["pnombre"],"precio"=>$this->respuesta["pprecio"],"tipo"=>$this->respuesta["ptipo"],"descripcion"=>$this->respuesta["pdescripcion"],"imagen"=>$this->respuesta["pimagen"]);
+          array_push($this->matrix,$matrix2);
+          unset($matrix2);
+          $i++;
+        }
+      }
+      else if($this->buscar!="" && $this->valorMin!=0 && $this->valorMax!=0 && $this->tipo==="Todo"){
+        $this->consulta="select * from productos where pdescripcion like '{%$this->buscar%}' and pprecio between {$this->valorMin} and {$this->valorMax}";
         $this->respuesta1=$this->conn->query($this->consulta);
         $i=1;
         while($i<=$this->conn->affected_rows){
