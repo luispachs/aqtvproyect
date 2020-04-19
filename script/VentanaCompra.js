@@ -9,6 +9,9 @@ function payBuy(){
     div=document.querySelector("body div");
     div.setAttribute("id","pantalla");
     seccion.setAttribute("id","ventana");
-    
-}
+    pantalla=document.querySelector("#pantalla");
+    pantalla.style.width=""+screen.width+"px";
+    pantalla.style.height=""+screen.height+"px"
+    pantalla.style.backgroundColor="rgba(0,0,0,0.1)";
+} 
 
