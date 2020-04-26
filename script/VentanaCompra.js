@@ -1,12 +1,12 @@
-function payBuy(imagen1="camarax.jpg",nombre="camara X",precio=35000,descripcion="Es una camara"){
-
+function payBuy(imagen1="camarax.jpg",nombre="camara ID",precio=35000,descripcion="Es una camara",id=1){
     var seccion=document.createElement("seccion");
     var imagen=document.createElement("img");
     var contenido=document.createElement("div");
     var datos=document.createElement("P");
-    var cerrar=document.createElement("i");
-    var agregarCarrito=document.createElement("i");
-    var comprar=document.createElement("i");
+    var cerrar=document.createElement("em");
+    var cant=document.createElement("input");
+    var agregarCarrito=document.createElement("em");
+    var comprar=document.createElement("em");
     //definicion de id y clases
     cerrar.setAttribute("class","fas fa-times");
     agregarCarrito.setAttribute("class","fas fa-shopping-cart");
@@ -16,6 +16,10 @@ function payBuy(imagen1="camarax.jpg",nombre="camara X",precio=35000,descripcion
     seccion.setAttribute("id","ventanaCompra");
     imagen.setAttribute("id","imagen");
     imagen.setAttribute("src","../resource/"+imagen1);
+    cant.setAttribute("id","cantidad");
+    cant.setAttribute("type","number");
+    cant.value=1;
+
     // finalizacion de definicion de atributps
     datos.innerHTML="<strong>Nombre: </strong>"+nombre+"<br><strong>Precio: </strong>"+precio+"<br><Strong>Descripcion: </strong>"+descripcion+"";
     document.body.appendChild(seccion);
@@ -24,14 +28,29 @@ function payBuy(imagen1="camarax.jpg",nombre="camara X",precio=35000,descripcion
     seccion.appendChild(cerrar);
     seccion.appendChild(agregarCarrito);
     seccion.appendChild(comprar);
+    seccion.appendChild(cant);
     contenido.appendChild(datos);
 
 // eventos en botones
-  //cerrar.addEventListener("click",closeWindow()); 
-} 
-function closeWindow(){ 
-    var pantalla=document.getElementById("pantalla");
-    pantalla.remove();
+  cerrar.addEventListener("click",function(){
+    var name="carrito="
+    var quitar=document.getElementById("ventanaCompra");
+    document.body.removeChild(quitar);
+  }); 
+  agregarCarrito.addEventListener("click",function(){
+    document.cookie=""+nombre+"="+document.getElementById("cantidad").value+"; max-age=3600*24*30*12; path=/";
+ 
+  });
+  comprar.addEventListener("click",function(){
+    var cookie=document.cookie;
+    var datosCookie=cookie.split(";");
+    for(var i=0;i<datosCookie.length;i++){
+      var d=datosCookie[i];
+      var index=d.indexOf("=");
+      var nameCookie=d.substring(0,index);
+      var valueCookie=d.substring(index+1,d.length);
+      console.log(nameCookie,valueCookie);
+    }
     
+  });
 }
-

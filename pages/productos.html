@@ -12,6 +12,7 @@
 
 <link rel="shortcut icon" type="image/icon" href="../image/Logo_AQTV.jpg">
 <link rel="stylesheet" type="text/css" href="../Style/productos.css">
+<script type="text/javascript" src="../script/VentanaCompra.js"></script>
 <script
 			  src="../script/jquery-3.4.1.js"
 			></script>
@@ -42,6 +43,7 @@
         var info =  document.createElement("section");
         info.innerHTML=  "<img src=\"../resource/"+item.imagen+ "\" class=\"imgitem\"\"><h3>"+item.nombre+"</h3><p><span>Nombre: </span>"+item.nombre+"<br><span>Precio:</span>"+item.precio+"<br><span>Tipo:</span>"+item.tipo+"<br><span>Descripcion:</span>"+item.descripcion+"</p>";
         info.setAttribute("class","itemIndividual");
+        div.setAttribute("onclick","payBuy()")
         lado.appendChild(div);
         div.appendChild(info);
         console.log(result);

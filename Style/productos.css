@@ -150,13 +150,14 @@ address p{
   left:200px;
   top:20px;
   background:#BFFFEF;
+  border: 1px solid #000000;
   
 }
 #imagen{
   position:relative;
   width:200px;
   height:200px;
-  left:50px;
+  left:130px;
   bottom:130px;
 }
 #datos{
@@ -165,9 +166,18 @@ address p{
   top:300px;
 }
 .fas.fa-times{
+  cursor:pointer;
   position:relative;
   bottom:350px;
-  right:50px;
+  left:200px;
+  width:60px;
+  height:50px;
+  font-size:20px;
+  color:#000000;
+}
+.fas.fa-times:hover{
+  font-size:35px;
+  transition:font-size 1s linear 1s ;
 }
 #contenido{
   position:relative;
@@ -177,12 +187,39 @@ address p{
 
 .fas.fa-shopping-cart{
   position:relative;
-  right:-660px;
+  left:60px;
   top:40px;
+  width:70px;
+  height:50px;
+  font-size:30px;
+  color:#CE1C0E ;
   
 }
 .fas.fa-money-bill{
   position:relative;
   top:40px;
-  right:-600px;
+  right:200px;
+  width:70px;
+  height:50px;
+  font-size:30px;
+  color:#039713 ;
+}
+.fas.fa-shopping-cart:hover{
+  cursor:pointer;
+  color:#EB4A3D ;
+  font-size:35px;
+  transition: font-size 1s linear 1s ;
+  
+}
+.fas.fa-money-bill:hover{
+  cursor:pointer;
+  color:#095103 ;
+  font-size:35px;
+  transition: font-size 1s linear 1s ;
+}
+#cantidad{
+  position:relative;
+  width:50px;
+  left: 270px;
+  bottom:100px;
 }
