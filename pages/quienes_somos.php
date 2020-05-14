@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="description" content="Pagina quienes somos de aqtv virtual">
     <meta name="keywords" content="quienes,somos,aqtv,informacion,empresarial">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Quienes somos? AQTV VIRTUAL</title>
     <link rel="shortcut icon" type="image/icon" href="../image/Logo_AQTV.jpg">
     <link rel="stylesheet" type="text/css" href="../Style/quienes.css">

@@ -49,6 +49,19 @@ div{
   left:240px;
   top:-300px;
 }
+#lateral{
+  /*display:inline-table;*/
+ /*float: left;*/
+  display:table;
+  padding:10px;
+  margin:5px;
+  background-color: #BFFFEF ;
+  border-radius:20px;
+  width:500px; 
+  position:relative;
+  left:350px;
+  top:-600px;}
+
 p{
   width: 300px;
   height: auto;
@@ -222,4 +235,17 @@ address p{
   width:50px;
   left: 270px;
   bottom:100px;
+}
+#form{
+  position:relative;
+  top:10px;
+  width:300px;
+  cursor: pointer;
+}
+.info{
+  padding:20px;
+  margin:5px;
+  width:250px;
+  height:10px;
+  border-radius:30px;
 }

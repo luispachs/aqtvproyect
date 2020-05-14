@@ -152,10 +152,12 @@ class noticias extends mysqli {
       }
     }
     return $this->matrix;
-      $this->conn->close();
-      
+     
     }
-
+function closeConn(){
+  $this->conn->close();
+      
+}
 }
 
 

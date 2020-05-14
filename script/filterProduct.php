@@ -22,6 +22,7 @@ if($_POST!= null)
 
       $dato =$shared->connection_sql($buscar,$valorMin,$valorMax,$opcion); //"estos son los valores: {$buscar},{$valorMin},{$valorMax},{$opcion}";
     echo json_encode($dato);
+    $shared->closeConn();
 }
 
 ?>

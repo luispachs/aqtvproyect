@@ -1,4 +1,4 @@
-function payBuy(imagen1="camarax.jpg",nombre="camara ID",precio=35000,descripcion="Es una camara",id=1){
+function payBuy(imagen1="camarax.jpg",nombre="camara xi",precio=35000,descripcion="Es una camara",id=2){
     var seccion=document.createElement("seccion");
     var imagen=document.createElement("img");
     var contenido=document.createElement("div");
@@ -38,19 +38,33 @@ function payBuy(imagen1="camarax.jpg",nombre="camara ID",precio=35000,descripcio
     document.body.removeChild(quitar);
   }); 
   agregarCarrito.addEventListener("click",function(){
-    document.cookie=""+nombre+"="+document.getElementById("cantidad").value+"; max-age=3600*24*30*12; path=/";
+    document.cookie=""+id+"="+document.getElementById("cantidad").value+"; max-age=3600*24*30*12; path=/";
+    var quitar=document.getElementById("ventanaCompra");
+    document.body.removeChild(quitar);
  
   });
   comprar.addEventListener("click",function(){
+   
+    document.cookie=""+id+"="+document.getElementById("cantidad").value+"; max-age=3600*24*30*12;path=/;domain=localhost";
     var cookie=document.cookie;
     var datosCookie=cookie.split(";");
+    var lista= new Array(datosCookie.length);
     for(var i=0;i<datosCookie.length;i++){
       var d=datosCookie[i];
       var index=d.indexOf("=");
       var nameCookie=d.substring(0,index);
       var valueCookie=d.substring(index+1,d.length);
       console.log(nameCookie,valueCookie);
+      var datoLista= new Array(2);
+      datoLista[0]=nameCookie;
+      datoLista[1]=valueCookie;
+      lista.push(datoLista);
+
     }
+    console.log(lista);
     
+    var quitar=document.getElementById("ventanaCompra");
+    document.body.removeChild(quitar);
+    location="../pages/confirmarCompra.html";
   });
 }

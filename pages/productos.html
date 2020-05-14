@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="description" content="Pagina de venta de productos de AQTV">
 <meta name="keywords" content="venta,productos,aqtv">
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script src="../script/parseForm.js"></script>
 
 <title> Tienda de productos  AQTV S.A.S</title>
@@ -43,16 +43,15 @@
         var info =  document.createElement("section");
         info.innerHTML=  "<img src=\"../resource/"+item.imagen+ "\" class=\"imgitem\"\"><h3>"+item.nombre+"</h3><p><span>Nombre: </span>"+item.nombre+"<br><span>Precio:</span>"+item.precio+"<br><span>Tipo:</span>"+item.tipo+"<br><span>Descripcion:</span>"+item.descripcion+"</p>";
         info.setAttribute("class","itemIndividual");
-        div.setAttribute("onclick","payBuy()")
+        div.setAttribute("onclick","payBuy('"+item.imagen+"','"+item.nombre+"','"+item.precio+"','"+item.descripcion+"',"+item.id+")");
+       
         lado.appendChild(div);
         div.appendChild(info);
         console.log(result);
        
        }
-       $(".item").css({"width":"250px","border":"5px solid","border-radius":"30px","margin":"20px","padding":"10px","float":"left","height":"150px"}); 
+       $(".item").css({"width":"250px","border":"5px solid","border-radius":"30px","margin":"20px","padding":"10px","float":"left","height":"150px","cursor":"pointer"}); 
        $(".imgitem").css({"width":"150px","height":"100px"});
-     
-       
 				}
 			}
 	)
@@ -97,12 +96,12 @@
   <br>
  
 
-  <input type="radio" name="opcion" id="opcion" value="Todo" checked> Todo<br>
-  <input type="radio" name="opcion" id="opcion" value="camara"> Camaras<br>
-  <input type="radio" name="opcion" id="opcion" value="Dvr"> Dvr <br>
-  <input type="radio" name="opcion" id="opcion" value="monitor"> monitor<br>
-  <input type="radio" name="opcion" id="opcion" value="servicio">servicios<br>
-  <input type="radio" name="opcion" id="opcion" value="Alarma"> Alarmas<br>
+  <input type="radio" name="opcion" class="opcion" value="Todo" checked> Todo<br>
+  <input type="radio" name="opcion" class="opcion" value="camara"> Camaras<br>
+  <input type="radio" name="opcion" class="opcion" value="Dvr"> Dvr <br>
+  <input type="radio" name="opcion" class="opcion" value="monitor"> monitor<br>
+  <input type="radio" name="opcion" class="opcion" value="servicio">servicios<br>
+  <input type="radio" name="opcion" class="opcion" value="Alarma"> Alarmas<br>
   <input type="button"  value="Buscar" id="boton1" >
 </form>
 <!-- #############################final del formulario######################################-->

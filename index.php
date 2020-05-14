@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta name="description" content="Pagina virtual de inicio AQtV">
     <meta name="keywords" content="pagina, inicio, AQtV, ventas, virtual">
-    <meta name="viewport" content="width=device-width,initial-scale=1 ,user-scalable=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="shortcut icon" type="image/icon" href="image/Logo_AQTV.jpg">
     <link rel="stylesheet" type="text/css" href="style/index.css">
     <script src="https://kit.fontawesome.com/e4100513fa.js" crossorigin="anonymous"></script>

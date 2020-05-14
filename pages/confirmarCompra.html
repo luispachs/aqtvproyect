@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta charset="UTF-9"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="Description" content="pagina de confirmacion de productos"/>
+        <link rel="stylesheet" type="text/css" href="../Style/productos.css"/>
+        <script src="../script/jquery-3.4.1.js"></script>
+        <script src="https://kit.fontawesome.com/e4100513fa.js" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            
+                document.addEventListener("DOMContentLoaded",function(event){
+                    
+                   
+                    var datoId;
+                    var datoCant;
+                    var cookies=document.cookie;
+                    var datoCookie=cookies.split(";");
+                    console.log(datoCookie);
+                    var datoEnvio=[];
+                    var datoInt=new Array(2);
+                    var envio;
+                    var j=0;
+                    for(var i of datoCookie){
+                        datoId=Number(i.slice(0,i.indexOf("=")));
+                        datoCant=Number(i.slice(i.indexOf("=")+1,i.length));
+                        console.log(datoId,datoCant);
+                        datoInt=[datoId,datoCant];
+                        datoEnvio[j]=[datoInt];
+                        j++;
+
+                    }
+                    
+                    console.log(datoEnvio);
+                    envio=JSON.stringify(datoEnvio);
+                    console.log(envio);
+                    var xml=null;
+                    if(XMLHttpRequest){
+                        xml= new XMLHttpRequest();
+                    }
+                    else{
+                        xml=  new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                
+                    xml.onreadystatechange= function(){
+                        if(xml.readyState==4 && xml.status==200){
+                            var respuesta=JSON.parse(xml.responseText);
+                            console.log(respuesta);
+                           
+                            
+                        }
+                    }
+
+                    xml.open("POST","../Script/consultaCompra.php",true);
+                    xml.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                    xml.send("envio="+envio);
+                })
+
+        </script>
+        <script>
+            var medioDePago=document.getElementsByName("medioDePago");
+            if(medioDePago=="efectivo"){
+                var form=document.getElementsByName("venta");
+                var input=document.createElement("input");
+                input.setAttribute("type","text");
+                input.setAttribute("value","CMP-"+Math.random*100);
+                form.appendChild();
+            }
+        </script>
+    </head>
+    <body>
+        <header class="encabezados">
+            <img src="../image/Banner.png">
+        </header>
+        <nav class="navegador">
+            <ul class="menu">
+                <li class="menuitem"><a href="../index.php">Inicio</a></li>
+                <li class="menuitem"><a href="../pages/quienes_somos.php">Quienes Somos</a></li>
+                <li class="menuitem"><a href="../pages/productos.html">Productos</a></li>
+                <li class="menuitem"><a href="../pages/contactanos.html">Contactanos</a></li>
+            </ul>
+        </nav>
+        <section class="seccion">
+            <div id="form">
+            <form action="" method="POST" name="venta">
+                <input type="text" placeholder="nombre" name ="nombre" class="info">
+                <input type="text" placeholder="apellido" name="apellido" class="info">
+                <input type="text" placeholder="direcciones" name=" direccion"class="info">
+                <input type="text" placeholder="ciudad" name="ciudad" class="info">
+                <input type="text" placeholder="departamento" name="departamento" class="info">
+                <input type="email" placeholder="ejemplo@email.com" name="email"class="info">
+                <input type="number" placeholder="555-555-555" name="telefono" class="info">
+                <label for="efectivo">Efectivo:</label>
+                <input type="radio" name="medioDePago"  id="efectivo" value="Efectivo" class="info"><br>
+                <label for="debito">Tarjeta debito:</label>
+                <input type="radio" name="medioDePago" id="debito" value="Tarjeta debito" class="info"><br>
+                <label for="credito">Tarjeta credito:</label>
+                <input type="radio" name="medioDePago" id="credito" value="Tarjeta credito" class="info"><br>
+
+            </form>
+        </div>
+        </section>
+        <aside  id="lateral"></aside>
+        
+    </body>
+</html>
